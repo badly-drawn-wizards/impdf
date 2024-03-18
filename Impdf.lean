@@ -130,7 +130,7 @@ def Spec.step (spec : Spec node fact) (st : State node fact) : State node fact Ã
       let (fact', unchanged) := JoinLe.joinLE tfr fact
       let st' := { 
         facts := if unchanged then st.facts else st.facts.insert node fact'
-        work := work'.union <| spec.affects.findD node RBSet.empty
+        work := if unchanged then work' else work'.union <| spec.affects.findD node RBSet.empty
       }
       (st', !unchanged)
     | .none => (st, false)
