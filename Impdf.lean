@@ -132,7 +132,7 @@ def Spec.step (spec : Spec node fact) (st : State node fact) : State node fact Ã
         facts := if unchanged then st.facts else st.facts.insert node fact'
         work := if unchanged then work' else work'.union <| spec.affects.findD node RBSet.empty
       }
-      (st', !unchanged)
+      (st', true)
     | .none => (st, false)
 
 end WorkList
